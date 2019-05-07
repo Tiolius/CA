@@ -31,8 +31,8 @@ function countCharacter(inputString, inputCharacter) {
     return count;
 }
 
-function capitalizeFirstCharacterOfWords(string) {
-    let arr = string.split(" ");
+function capitalizeFirstCharacterOfWords(str) {
+    let arr = str.split(" ");
     for (let i = 0; i < arr.length; i++) {
         let word = arr[i];
         arr[i] = word[0].toUpperCase() + word.substring(1);
@@ -59,16 +59,16 @@ function replaceFirstOccurence(string, toBeReplaced, replaceWith) {
 }
 
 
-function replaceAllOccurrences(string, toBeReplaced, replaceWith) {
-    return string.split(toBeReplaced).join(replaceWith);
+function replaceAllOccurrences(str, toBeReplaced, replaceWith) {
+    return str.split(toBeReplaced).join(replaceWith);
 }
 
-function encode(string) {
+function encode(str) {
     let replacementObject = { "a": "@", "s": "$", "i": "!", "o":"0" };
     for (let key in replacementObject) {
-        string = replaceAllOccurrences(string, key, replacementObject[key]);
+        str = replaceAllOccurrences(str, key, replacementObject[key]);
     }
-    return string;
+    return str;
 }
 
 
