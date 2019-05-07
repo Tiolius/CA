@@ -1,25 +1,6 @@
-/*Message Mixer
+const MessageMixer = {};
 
-Message Mixer is a messaging service that allows you to perform an action on input text
-and display the output of that behavior to the console.
-For example, with the current functions defined in Message Mixer, you can:
-
-count the characters in a message
-capitalize the first character of words
-reverse a message’s words in place
-reversing characters in place
-replace the first occurrence of a string
-replace all occurrences of a string
-encode text by swapping certain characters for other characters
-
-At present, Message Mixer runs as a program in a single file.
-This single file includes functions that define behavior as well as the output.
-Message Mixer knows that by extracting the functions into a module,
-logic can be reused in different parts of our application.
-
-Let’s help Message Maker turn the program into a module!*/
-
-function countCharacter(inputString, inputCharacter) {
+MessageMixer.countCharacter = function (inputString, inputCharacter) {
     let count = 0;
     let string = inputString.toLowerCase();
     let character = inputCharacter.toLowerCase();
@@ -29,56 +10,46 @@ function countCharacter(inputString, inputCharacter) {
         }
     }
     return count;
-}
+};
 
-function capitalizeFirstCharacterOfWords(str) {
+MessageMixer.capitalizeFirstCharacterOfWords= function(str) {
     let arr = str.split(" ");
     for (let i = 0; i < arr.length; i++) {
         let word = arr[i];
         arr[i] = word[0].toUpperCase() + word.substring(1);
     }
     return arr.join(" ");
-}
+};
 
 
-function reverseWord(word) {
+MessageMixer.reverseWord = function (word) {
     return word.split("").reverse().join("");
-}
+};
 
-function reverseAllWords(sentence) {
+MessageMixer.reverseAllWords = function (sentence) {
     let words = sentence.split(" ");
     for (let i = 0; i < words.length; i++) {
-        words[i] = reverseWord(words[i]);
+        words[i] = MessageMixer.reverseWord(words[i]);
     }
     return words.join(" ");
-}
+};
 
 
-function replaceFirstOccurence(string, toBeReplaced, replaceWith) {
+MessageMixer.replaceFirstOccurence = function (string, toBeReplaced, replaceWith) {
     return string.replace(toBeReplaced, replaceWith);
-}
+};
 
 
-function replaceAllOccurrences(str, toBeReplaced, replaceWith) {
+MessageMixer.replaceAllOccurrences = function (str, toBeReplaced, replaceWith) {
     return str.split(toBeReplaced).join(replaceWith);
-}
+};
 
-function encode(str) {
+MessageMixer.encode = function(str) {
     let replacementObject = { "a": "@", "s": "$", "i": "!", "o":"0" };
     for (let key in replacementObject) {
-        str = replaceAllOccurrences(str, key, replacementObject[key]);
+        str = MessageMixer.replaceAllOccurrences(str, key, replacementObject[key]);
     }
     return str;
-}
+};
 
-
-function displayMessage() {
-    console.log(countCharacter("What is the color of the sky?", "t"));
-    console.log(capitalizeFirstCharacterOfWords("What is the color of the sky?"));
-    console.log(reverseWord("What is the color of the sky?"));
-    console.log(reverseAllWords("What is the color of the sky?"));
-    console.log(replaceFirstOccurence("What is the color of the sky?", "sky", "water"));
-    console.log(encode("What is the color of the sky?"));
-}
-
-displayMessage();
+export default MessageMixer;
